@@ -33,10 +33,10 @@ public class JantarFilosofos {
         Thread f1 = new Thread (new Filosofo("1", mesa, mutex1, mutex2));
         f1.start();
         
-        Thread f2 = new Thread (new Filosofo("2", mesa, mutex1, mutex2));
+        Thread f2 = new Thread (new Filosofo("2", mesa, mutex2, mutex3));
         f2.start();
         
-        Thread f3 = new Thread (new Filosofo("3", mesa, mutex1, mutex2));
+        Thread f3 = new Thread (new Filosofo("3", mesa, mutex3, mutex1));
         f3.start();
         
         //Filosofo f2 = new Filosofo(mesa, mutex2, mutex3);

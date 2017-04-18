@@ -38,14 +38,14 @@ public class Filosofo implements Runnable{
             if(garfoEsquerdo.tryAcquire()){
                 //Pegou 2 garfos e esta comendo
                 mesa.comer(nome);
-                garfoEsquerdo.release();
-                garfoDireito.release();
                 //Tempo de comer
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                garfoEsquerdo.release();
+                garfoDireito.release();
                 
             } else {
                 //Soltar garfo direito
