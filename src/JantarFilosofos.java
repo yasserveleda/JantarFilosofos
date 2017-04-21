@@ -1,4 +1,7 @@
 
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
 
 /*
@@ -26,22 +29,43 @@ public class JantarFilosofos {
         mutex2 = new Semaphore(1);
         mutex3 = new Semaphore(1);
         
+        Random gerador = new Random();
+        //int time = gerador.nextInt(4);    
+        //System.out.println(time);
         
         MesaDeJantar mesa = new MesaDeJantar();
-        //Filosofo f1 = new Filosofo(mesa, mutex1, mutex2);
+       
+        Filosofo filosofo1 = new Filosofo("1", mesa, mutex1, mutex2);
+        Filosofo filosofo2 = new Filosofo("2", mesa, mutex2, mutex3);
+        Filosofo filosofo3 = new Filosofo("3", mesa, mutex3, mutex1);
         
-        Thread f1 = new Thread (new Filosofo("1", mesa, mutex1, mutex2));
+        Thread f1 = new Thread (filosofo1);
         f1.start();
         
-        Thread f2 = new Thread (new Filosofo("2", mesa, mutex2, mutex3));
+        Thread f2 = new Thread (filosofo2);
         f2.start();
         
-        Thread f3 = new Thread (new Filosofo("3", mesa, mutex3, mutex1));
+        Thread f3 = new Thread (filosofo3);
         f3.start();
         
         //Filosofo f2 = new Filosofo(mesa, mutex2, mutex3);
         //Filosofo f3 = new Filosofo(mesa, mutex3, mutex1);
         
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                //seu codigo aqui
+                f1.interrupt();
+                f2.interrupt();
+                f3.interrupt();
+                System.out.println("Terminou \n");
+                System.out.println("1: "+filosofo1.getVezesComeu());
+                System.out.println("2: "+filosofo2.getVezesComeu());
+                System.out.println("3: "+filosofo3.getVezesComeu());
+                System.exit(0);
+            }
+        }, 10000, 1000);
+
     }
     
 }

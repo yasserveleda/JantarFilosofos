@@ -22,11 +22,35 @@ public class MesaDeJantar {
     
     public boolean comer(String f){
         System.out.println("Filosofo "+f+" Comendo");
+        //Tempo de comer
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return true;
     }
     
     public boolean pensar(String f){
         System.out.println("Filosofo "+f+" Pensando");
+        //Tempo de pensar
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return true;
     }
+    
+    public boolean pensar_3(String f){
+        System.out.println("Filosofo "+f+" Pensando");
+        //Tempo de pensar
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    
 }

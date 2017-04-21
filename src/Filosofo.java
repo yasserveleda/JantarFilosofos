@@ -28,6 +28,10 @@ public class Filosofo implements Runnable{
         garfoDireito = direito;
     }
     
+    public int getVezesComeu(){
+        return comeu;
+    }
+    
     @Override
     public void run() {
        
@@ -38,12 +42,7 @@ public class Filosofo implements Runnable{
             if(garfoEsquerdo.tryAcquire()){
                 //Pegou 2 garfos e esta comendo
                 mesa.comer(nome);
-                //Tempo de comer
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                comeu++;
                 garfoEsquerdo.release();
                 garfoDireito.release();
                 
@@ -55,12 +54,6 @@ public class Filosofo implements Runnable{
          } else {
             //Garfos ocupados
             mesa.pensar(nome);
-            //Tempo de pensar
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
-            }
          }
        }
         
