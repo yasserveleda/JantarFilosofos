@@ -1,6 +1,8 @@
 # JantarFilosofos
 (Parcial) Solução do problema "Jantar dos Filosofos"
 
+"Falta sincronizar as threads para ambas terminarem juntos e deixar dinamico o numero de filosofos"
+
 Problema: Jantar para N filósofos
 
 Este exercício prático consiste na implementação de uma aplicação multithreading capaz de
