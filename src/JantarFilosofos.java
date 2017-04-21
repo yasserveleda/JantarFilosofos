@@ -29,9 +29,9 @@ public class JantarFilosofos {
         mutex2 = new Semaphore(1);
         mutex3 = new Semaphore(1);
         
-        Random gerador = new Random();
-        //int time = gerador.nextInt(4);    
-        //System.out.println(time);
+        /*Random gerador = new Random();
+        int time = gerador.nextInt(4);    
+        System.out.println(time);*/
         
         MesaDeJantar mesa = new MesaDeJantar();
        
@@ -47,9 +47,6 @@ public class JantarFilosofos {
         
         Thread f3 = new Thread (filosofo3);
         f3.start();
-        
-        //Filosofo f2 = new Filosofo(mesa, mutex2, mutex3);
-        //Filosofo f3 = new Filosofo(mesa, mutex3, mutex1);
         
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
