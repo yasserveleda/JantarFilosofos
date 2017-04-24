@@ -28,6 +28,14 @@ public class Filosofo implements Runnable{
         garfoDireito = direito;
     }
     
+    public Semaphore getGarfoEsquerdo(){
+        return garfoEsquerdo;
+    }
+    
+    public Semaphore getGarfoDireito(){
+        return garfoDireito;
+    }
+    
     public int getVezesComeu(){
         return comeu;
     }
