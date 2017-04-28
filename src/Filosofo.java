@@ -18,6 +18,7 @@ public class Filosofo implements Runnable{
     private int comeu, pensou;
     private Semaphore garfoEsquerdo, garfoDireito;
     private String nome;
+    private boolean chave;
     
     public Filosofo(String nome, MesaDeJantar mesa, Semaphore esquerdo, Semaphore direito){
         this.nome = nome;
@@ -26,6 +27,7 @@ public class Filosofo implements Runnable{
         pensou = 0;
         garfoEsquerdo = esquerdo;
         garfoDireito = direito;
+        chave = true;
     }
     
     public Semaphore getGarfoEsquerdo(){
@@ -40,10 +42,22 @@ public class Filosofo implements Runnable{
         return comeu;
     }
     
+    public int getVezesPensou(){
+        return pensou;
+    }
+    
+    public void setChave(){
+        chave = false;
+    }
+    
+    public String getNome(){
+        return nome;
+    }
+    
     @Override
     public void run() {
        
-       while(true){
+       while(chave){
         //Tentativa de pegar o garfo direito
         if(garfoDireito.tryAcquire()){
             //Tentativa de pegar o garfo esquerdo
@@ -62,6 +76,7 @@ public class Filosofo implements Runnable{
          } else {
             //Garfos ocupados
             mesa.pensar(nome);
+            pensou++;
          }
        }
         
