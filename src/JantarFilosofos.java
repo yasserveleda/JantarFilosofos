@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
@@ -21,9 +22,14 @@ public class JantarFilosofos {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        // TODO code application logic here
         int i;
-        int numeroFilosofos = 4;
+        int numeroFilosofos = 3;
+        
+        System.out.println("Digite o número de filosofos: ");
+        Scanner teclado = new Scanner(System.in);
+        
+        numeroFilosofos = teclado.nextInt();
+        
         ArrayList<Filosofo> lista = new ArrayList<>();
 
         
@@ -43,20 +49,25 @@ public class JantarFilosofos {
             }
         }
         System.out.println("-- Filosofos Criados --\n");
-        Thread.sleep(1000);
+        
+        System.out.println("Digite o tempo em segundos: ");
+        int timer = teclado.nextInt();
+        
+        System.out.println("-- Jantar --");
 
         //Liberando os filosofos
         for(int j=0; j < numeroFilosofos; j++){
           new Thread(lista.get(j)).start();
         }
-        
-        Thread.sleep(10000);
+        //Setando o tempo em segundos
+        Thread.sleep(timer*1000);
         
         for(int j=0; j < numeroFilosofos; j++){
           lista.get(j).setChave();
         }
         
         System.out.println("-- Fim do Jantar --\n");
+        //Tempo para setar as chaves
         Thread.sleep(3000);
         
         System.out.println("-- Resultados --");

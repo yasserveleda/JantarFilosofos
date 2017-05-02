@@ -51,18 +51,4 @@ public class MesaDeJantar {
         return true;
     }
     
-    public boolean pensar_3(String f){
-        System.out.println("Filosofo "+f+" Pensando");
-        //Tempo de pensar
-        try {
-            int time = gerador.nextInt(4);
-            time = time*1000;
-            //Thread.sleep(3000);
-            Thread.sleep(time);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return true;
-    }
-    
 }
